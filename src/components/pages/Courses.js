@@ -39,7 +39,20 @@ const Courses = ({ fetchAllCourses, courses }) => {
       <Grid container spacing={3}>
         {courses.map((course) => (
           <Grid item xs={12} key={course._id}>
-            <Paper className={classes.paper}>{course.courseName}</Paper>
+            <Paper className={classes.paper}>
+              <Grid item xs={3}>
+                <Paper className={classes.paper}>xs=3</Paper>
+              </Grid>
+              <Grid item xs={3}>
+                <Paper className={classes.paper}>xs=3</Paper>
+              </Grid>
+              <Grid item xs={3}>
+                <Paper className={classes.paper}>xs=3</Paper>
+              </Grid>
+              <Grid item xs={3}>
+                <Paper className={classes.paper}>xs=3</Paper>
+              </Grid>
+            </Paper>
           </Grid>
         ))}
       </Grid>

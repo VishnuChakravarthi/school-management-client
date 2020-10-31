@@ -13,6 +13,7 @@ export const userRegister = () => async (dispatch, getState) => {
 };
 
 export const userLogin = (email, password) => async (dispatch) => {
+  console.log(email);
   const response = await axios.post(`${baseURL}/users/login`, {
     email,
     password,
@@ -39,6 +40,7 @@ export const userLogout = () => async (dispatch, getState) => {
 
 export const fetchCourses = () => async (dispatch, getState) => {
   const token = getState().user.token;
+  console.log(token);
   const response = await axios.get(`${baseURL}/courses`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -74,4 +76,31 @@ export const fetchProfile = () => async (dispatch, getState) => {
   });
   console.log(response.data);
   dispatch({ type: "USER_PROFILE", payload: response.data });
+};
+
+export const createCourse = () => async (dispatch, getState) => {
+  const token = getState().user.token;
+  const data = getState().form.courseForm.values;
+  const response = await axios.post(
+    `${baseURL}/courses/create`,
+    { data },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  console.log(response.data);
+  dispatch({ type: "USER_PROFILE", payload: response.data });
+};
+
+export const getCourse = (id) => async (dispatch, getState) => {
+  const token = getState().user.token;
+  const response = await axios.get(`${baseURL}/courses/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  console.log(response.data);
+  dispatch({ type: "GET_COURSE", payload: response.data });
 };

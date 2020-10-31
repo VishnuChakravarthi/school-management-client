@@ -25,7 +25,6 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         allCourses: action.payload,
       };
-
     default:
       return state;
   }

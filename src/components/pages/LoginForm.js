@@ -6,6 +6,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 class LoginForm extends React.Component {
+  lower = (value) => value && value.toLowerCase();
+
   renderError = ({ touched, error }) => {
     if (touched && error) {
       return (
@@ -40,7 +42,12 @@ class LoginForm extends React.Component {
         >
           <Grid container spacing={3} style={{ width: "80%", margin: "auto" }}>
             <Grid item xs={6} sm={6}>
-              <Field name="email" label="EMAIL" component={this.renderInput} />
+              <Field
+                name="email"
+                label="EMAIL"
+                component={this.renderInput}
+                normalize={this.lower}
+              />
             </Grid>
             <Grid item xs={6} sm={6}>
               <Field

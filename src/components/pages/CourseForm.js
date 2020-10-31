@@ -1,6 +1,5 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-
 import { Link } from "react-router-dom";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -21,8 +20,6 @@ class Form extends React.Component {
   //   super(props);
   //   this.state = { status: props.user.userType };
   // }
-
-  lower = (value) => value && value.toLowerCase();
 
   renderError = ({ touched, error }) => {
     if (touched && error) {
@@ -73,15 +70,7 @@ class Form extends React.Component {
     );
   };
 
-  valueset = [
-    "city",
-    "country",
-    "company",
-    "school",
-    "hometown",
-    "languages",
-    "gender",
-  ];
+  valueset = ["id", "name", "department", "room", "team", "waitlistcapacity"];
 
   render() {
     return (
@@ -91,38 +80,6 @@ class Form extends React.Component {
           onSubmit={this.props.handleSubmit(this.props.onSubmit)}
         >
           <Grid container spacing={3} style={{ width: "80%", margin: "auto" }}>
-            <Grid item xs={6} sm={6}>
-              <Field name="name" label="NAME*" component={this.renderInput} />
-            </Grid>
-            <Grid item xs={6} sm={6}>
-              <Field
-                name="email"
-                label="EMAIL*"
-                component={this.renderInput}
-                normalize={this.lower}
-              />
-            </Grid>
-            {this.props.register ? (
-              <React.Fragment>
-                <Grid item xs={6} sm={6}>
-                  <Field
-                    name="password"
-                    label="PASSWORD*"
-                    component={this.renderInput}
-                  />
-                </Grid>
-                <Grid item xs={6} sm={6}>
-                  <Field
-                    name="confirmPassword"
-                    label="CONFIRM PASSWORD*"
-                    component={this.renderInput}
-                  />
-                </Grid>
-              </React.Fragment>
-            ) : null}
-            <Grid item xs={6} sm={6}>
-              <Field name="type" label="TYPE*" component={this.renderInput} />
-            </Grid>
             {this.valueset.map((key) => {
               return (
                 <Grid key={key} item xs={6} sm={6}>
@@ -134,13 +91,24 @@ class Form extends React.Component {
                 </Grid>
               );
             })}
+            <Grid item xs={12} sm={12}>
+              <TextField
+                label="DESCRIPTION"
+                multiline
+                rows={4}
+                defaultValue=""
+                variant="outlined"
+                style={{ width: "100%" }}
+              />
+            </Grid>
           </Grid>
+
           <Grid container spacing={3} style={{ width: "80%", margin: "auto" }}>
             <Grid item xs={6} sm={6} style={{ textAlign: "right" }}>
               <Button variant="contained">
                 <Link
                   to="/home"
-                  style={{ textDecoration: "none", color: "black" }}
+                  style={{ textDecoration: "none", color: "white" }}
                 >
                   Cancel
                 </Link>
@@ -165,36 +133,33 @@ class Form extends React.Component {
 const validate = (formValues) => {
   const error = {};
   console.log("error", formValues);
+  if (!formValues.id) {
+    error.id = "Please enter an Id";
+  }
+
   if (!formValues.name) {
     error.name = "Please enter a name";
   }
 
-  const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const isEmail = regex.test(formValues.email);
-
-  if (!formValues.email || !isEmail) {
-    error.email = "Please enter a valid email";
+  if (!formValues.department) {
+    error.department = "Please enter a department";
   }
 
-  if (!formValues.password || formValues.password.length < 7) {
-    error.password = "Please enter a password of length 7 or more";
+  if (!formValues.room) {
+    error.room = "Please enter a room value";
   }
 
-  if (!formValues.confirmPassword) {
-    error.confirmPassword = "Please enter a same value as previous password";
+  if (!formValues.team) {
+    error.team = "Please enter a team";
   }
 
-  if (formValues.password !== formValues.confirmPassword) {
-    error.confirmPassword = "Password do not match";
-  }
-
-  if (!formValues.type) {
-    error.type = "Please enter either Staff or Student";
+  if (!formValues.waitlistcapacity) {
+    error.waitlistcapacity = "Please enter either Staff or Student";
   }
   return error;
 };
 
 export default reduxForm({
-  form: "genForm",
+  form: "courseForm",
   validate: validate,
 })(Form);

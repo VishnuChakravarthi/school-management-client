@@ -61,7 +61,7 @@ const UserProfile = ({ fetchProfile, user }) => {
     fetchProfile();
   }, []);
 
-  const valueset1 = ["name", "userType", "email", "city", "country"];
+  const valueset1 = ["name", "type", "email", "city", "country"];
   const valueset2 = ["company", "school", "hometown", "languages", "gender"];
 
   if (!user) {
@@ -72,11 +72,11 @@ const UserProfile = ({ fetchProfile, user }) => {
     <div className={classes.root}>
       <Card className={classes.card}>
         <CardActionArea>
-          <CardMedia
+          {/* <CardMedia
             className={classes.media}
             image="/static/images/cards/contemplative-reptile.jpg"
             title="Contemplative Reptile"
-          />
+          /> */}
           <CardContent>
             <Grid container spacing={3}>
               <Grid item xs={6} sm={6}>
@@ -124,13 +124,20 @@ const UserProfile = ({ fetchProfile, user }) => {
             </Grid>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Link to="/home" size="small" color="primary">
-            Back
-          </Link>
-          <Link to="/profile/edit" size="small" color="primary">
-            Edit
-          </Link>
+        <CardActions style={{ justifyContent: "center" }}>
+          <Button size="large" variant="contained">
+            <Link to="/home" style={{ textDecoration: "none", color: "black" }}>
+              Back
+            </Link>
+          </Button>
+          <Button size="large" variant="contained" color="primary">
+            <Link
+              to="/profile/edit"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              Edit
+            </Link>
+          </Button>
         </CardActions>
       </Card>
     </div>
