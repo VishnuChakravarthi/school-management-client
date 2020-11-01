@@ -25,22 +25,9 @@ const useStyles = makeStyles((theme) => ({
 const Student = ({ fetchRegCourses, courses }) => {
   const classes = useStyles();
 
-  // console.log(courses);
-
-  //
-
-  // console.log(allcourses);
-
   useEffect(() => {
     fetchRegCourses();
   }, []);
-
-  // var regCourses = [];
-  // if (courses.length === 0) {
-  //   regCourses = courses.map((course) => {
-  //     return course.course;
-  //   });
-  // }
 
   if (!courses) {
     return <div> Loading....</div>;
@@ -75,6 +62,7 @@ const Student = ({ fetchRegCourses, courses }) => {
   };
   return (
     <div className={classes.course}>
+      <h2>REGISTERED COURSES</h2>
       {renderPage()}
       <Button size="large" variant="contained" color="primary">
         <Link

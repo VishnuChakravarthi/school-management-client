@@ -13,7 +13,14 @@ import CourseCreate from "./pages/CourseCreate";
 
 const App = () => {
   return (
-    <div style={{ background: "Beige", marginTop: 90, padding: 25 }}>
+    <div
+      style={{
+        background: "Beige",
+        marginTop: 90,
+        padding: 25,
+        fontFamily: "ROBOTO",
+      }}
+    >
       <Router history={history}>
         <div>
           <Header />

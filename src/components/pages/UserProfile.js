@@ -62,6 +62,7 @@ const UserProfile = ({ fetchProfile, user }) => {
 
   return (
     <div className={classes.root}>
+      <h2>USER PROFILE</h2>
       <Card className={classes.card}>
         <CardActionArea>
           {/* <CardMedia

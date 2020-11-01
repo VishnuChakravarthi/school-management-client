@@ -33,6 +33,7 @@ const AllCourses = ({ fetchAllCourses, courses }) => {
 
   return (
     <div className={classes.root}>
+      <h2>ALL COURSES</h2>
       <Courses courses={courses} />
     </div>
   );

@@ -27,8 +27,6 @@ class Form extends React.Component {
     return null;
   };
 
-  // { label, value, input, meta }
-
   renderInput = ({ label, input, meta }) => {
     return (
       <div>
@@ -112,14 +110,25 @@ class Form extends React.Component {
           </Grid>
           <Grid container spacing={3} style={{ width: "80%", margin: "auto" }}>
             <Grid item xs={6} sm={6} style={{ textAlign: "right" }}>
-              <Button variant="contained">
-                <Link
-                  to="/profile"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  Cancel
-                </Link>
-              </Button>
+              {this.props.register ? (
+                <Button variant="contained">
+                  <Link
+                    to="/"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    Cancel
+                  </Link>
+                </Button>
+              ) : (
+                <Button variant="contained">
+                  <Link
+                    to="/profile"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    Cancel
+                  </Link>
+                </Button>
+              )}
             </Grid>
             <Grid item xs={6} sm={6}>
               <Button

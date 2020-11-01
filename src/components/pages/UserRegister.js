@@ -9,7 +9,12 @@ const UserRegister = ({ userRegister }) => {
     console.log(formValues);
     userRegister();
   };
-  return <Form onSubmit={onSubmit} register={true} />;
+  return (
+    <div>
+      <h2>USER REGISTRATION</h2>
+      <Form onSubmit={onSubmit} register={true} />
+    </div>
+  );
 };
 
 export default connect(null, { userRegister })(UserRegister);
