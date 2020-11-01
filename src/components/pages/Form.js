@@ -3,14 +3,6 @@ import { Field, reduxForm } from "redux-form";
 
 import { Link } from "react-router-dom";
 
-import { withStyles } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-
 import Grid from "@material-ui/core/Grid";
 
 import TextField from "@material-ui/core/TextField";
@@ -47,28 +39,6 @@ class Form extends React.Component {
           style={{ width: "100%" }}
         />
         {this.renderError(meta)}
-      </div>
-    );
-  };
-
-  handleChange = (event) => {
-    // this.setState({ status: event.target.value });
-  };
-
-  renderSelect = ({}) => {
-    return (
-      <div>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          // value={this.state.status}
-          onChange={this.handleChange}
-          style={{ width: "100%" }}
-        >
-          <MenuItem value="staff">Staff</MenuItem>
-          <MenuItem value="student">Student</MenuItem>
-        </Select>
       </div>
     );
   };

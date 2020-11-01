@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 
 const CourseCreate = ({ createCourse }) => {
   const onSubmit = (formValues) => {
-    // console.log(formValues);
     createCourse();
   };
 

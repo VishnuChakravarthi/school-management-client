@@ -1,7 +1,8 @@
 import axios from "axios";
 import history from "../components/History";
 
-const baseURL = "http://localhost:8000";
+const baseURL = "https://sleepy-lowlands-89030.herokuapp.com";
+// const baseURL = "http://localhost:8000";
 
 export const userRegister = () => async (dispatch, getState) => {
   // console.log(getState().form.genForm.values);

@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import Radio from "@material-ui/core/Radio";
-import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 
 import { fetchCourses } from "../../actions";
@@ -51,36 +46,6 @@ const Faculty = (props) => {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        {/* {props.faculty.courses.map((course) => (
-          <Grid item xs={12} key={course.id}>
-            <Paper className={classes.paper}>
-              {/* <Link to={`/faculty/courses/${course._id}`}>{course.name}</Link> */}
-        {/* <Grid container spacing={3}>
-                <Grid item xs={3}>
-                  Name : {course.name}
-                </Grid>
-                <Grid item xs={3}>
-                  Id: {course.id}
-                </Grid>
-                <Grid item xs={3}>
-                  Department : {course.department}
-                </Grid>
-                <Grid item xs={3}>
-                  Team: {course.team}
-                </Grid>
-                <Grid item xs={3}>
-                  Room: {course.room}
-                </Grid>
-                <Grid item xs={3}>
-                  waitlist Capacity : {course.waitlistcapacity}
-                </Grid>
-                <Grid item xs={3}>
-                  Description: {course.description}
-                </Grid>
-              </Grid>
-            </Paper>
-          </Grid>  */}
-        {/* ))} */}
         <Courses courses={props.faculty.courses} type={"faculty"} />
       </Grid>
       <Grid container spacing={3}>

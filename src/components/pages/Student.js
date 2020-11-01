@@ -3,12 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchRegCourses } from "../../actions";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
 import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
 import Courses from "./Courses";
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +46,20 @@ const Student = ({ fetchRegCourses, courses }) => {
     return <div> Loading....</div>;
   }
   if (courses.length === 0) {
-    return <div>You haven't registered to any course</div>;
+    return (
+      <div>
+        You haven't registered to any course <br />
+        <br />
+        <Button size="large" variant="contained" color="primary">
+          <Link
+            to="/allcourses"
+            style={{ textDecoration: "none", color: "white", width: "100%" }}
+          >
+            Register a Course
+          </Link>
+        </Button>
+      </div>
+    );
   }
 
   const regCourses = courses.map((course) => {
