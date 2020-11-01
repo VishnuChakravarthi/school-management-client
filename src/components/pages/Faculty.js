@@ -11,11 +11,12 @@ import Button from "@material-ui/core/Button";
 import { fetchCourses } from "../../actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Courses from "./Courses";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    width: "99%",
+    width: "98%",
   },
   paper: {
     padding: theme.spacing(2),
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     fontFamily: "ROBOTO",
     fontSize: "20px",
+    cursor: "pointer",
   },
   control: {
     padding: theme.spacing(2),
@@ -49,11 +51,11 @@ const Faculty = (props) => {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        {props.faculty.courses.map((course) => (
+        {/* {props.faculty.courses.map((course) => (
           <Grid item xs={12} key={course.id}>
             <Paper className={classes.paper}>
               {/* <Link to={`/faculty/courses/${course._id}`}>{course.name}</Link> */}
-              <Grid container spacing={3}>
+        {/* <Grid container spacing={3}>
                 <Grid item xs={3}>
                   Name : {course.name}
                 </Grid>
@@ -77,8 +79,9 @@ const Faculty = (props) => {
                 </Grid>
               </Grid>
             </Paper>
-          </Grid>
-        ))}
+          </Grid>  */}
+        {/* ))} */}
+        <Courses courses={props.faculty.courses} type={"faculty"} />
       </Grid>
       <Grid container spacing={3}>
         <Grid item xs={3}>

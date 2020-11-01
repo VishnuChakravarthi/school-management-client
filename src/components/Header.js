@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { userLogin, userLogout } from "../actions";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -23,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  accountIcon: {
+    padding: 10,
+    color: "white",
+  },
 }));
 
 const Header = ({ isSignedIn, userLogout }) => {
@@ -40,7 +44,7 @@ const Header = ({ isSignedIn, userLogout }) => {
     if (isSignedIn) {
       return (
         <div>
-          <Link to={"/profile"} className="header">
+          <Link to={"/profile"} className={classes.accountIcon}>
             <AccountCircleIcon />
           </Link>
           <Button color="inherit" onClick={logout}>
@@ -55,18 +59,12 @@ const Header = ({ isSignedIn, userLogout }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Home
+            <Link to="/home" style={{ textDecoration: "none", color: "white" }}>
+              Home
+            </Link>
           </Typography>
           {renderButtons()}
         </Toolbar>

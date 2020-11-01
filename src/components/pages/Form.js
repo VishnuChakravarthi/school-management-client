@@ -121,7 +121,12 @@ class Form extends React.Component {
               </React.Fragment>
             ) : null}
             <Grid item xs={6} sm={6}>
-              <Field name="type" label="TYPE*" component={this.renderInput} />
+              <Field
+                name="type"
+                label="TYPE*"
+                component={this.renderInput}
+                normalize={this.lower}
+              />
             </Grid>
             {this.valueset.map((key) => {
               return (
@@ -139,7 +144,7 @@ class Form extends React.Component {
             <Grid item xs={6} sm={6} style={{ textAlign: "right" }}>
               <Button variant="contained">
                 <Link
-                  to="/home"
+                  to="/profile"
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   Cancel
@@ -164,7 +169,7 @@ class Form extends React.Component {
 
 const validate = (formValues) => {
   const error = {};
-  console.log("error", formValues);
+
   if (!formValues.name) {
     error.name = "Please enter a name";
   }
@@ -181,15 +186,17 @@ const validate = (formValues) => {
   }
 
   if (!formValues.confirmPassword) {
-    error.confirmPassword = "Please enter a same value as previous password";
+    error.confirmPassword = "Please enter a same value as in password field";
   }
 
   if (formValues.password !== formValues.confirmPassword) {
     error.confirmPassword = "Password do not match";
   }
 
+  console.log(formValues.type);
+
   if (!formValues.type) {
-    error.type = "Please enter either Staff or Student";
+    error.type = "Please enter either staff or student";
   }
   return error;
 };

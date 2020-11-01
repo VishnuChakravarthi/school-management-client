@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import Form from "./Form";
 
+import { userUpdate } from "../../actions";
+
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -33,86 +35,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditProfile = ({ user }) => {
+const EditProfile = ({ user, userUpdate }) => {
   const classes = useStyles();
-  const valueset = [
-    "city",
-    "country",
-    "company",
-    "school",
-    "hometown",
-    "languages",
-    "gender",
-  ];
 
   const onSubmit = (formValues) => {
-    console.log(formValues);
+    const data = formValues;
+    delete data.courses;
+    delete data._id;
+    // console.log(data);
+    userUpdate(data);
     // props.editStream(props.match.params.id, formValues);
   };
 
   return (
     <div className={classes.root}>
-      {/* <form className={classes.form} onSubmit={submitEditForm} noValidate autoComplete="off">
-        <Grid container className={classes.fields} spacing={3}>
-          <Grid item xs={6} sm={6}>
-            <TextField
-              required
-              id="standard-required"
-              label="NAME"
-              defaultValue={user.name}
-              style={{ width: "100%" }}
-            />
-          </Grid>
-          <Grid item xs={6} sm={6}>
-            <TextField
-              required
-              id="standard-required"
-              label="EMAIL"
-              defaultValue={user.email}
-              style={{ width: "100%" }}
-            />
-          </Grid>
-          <Grid item xs={6} sm={6}>
-            <TextField
-              disabled
-              id="standard-required"
-              label="USERTYPE"
-              defaultValue={user.userType}
-              style={{ width: "100%" }}
-            />
-          </Grid>
-
-          {valueset.map((key) => {
-            return (
-              <Grid key={key} item xs={6} sm={6}>
-                <TextField
-                  id="standard-required"
-                  label={key.toUpperCase()}
-                  defaultValue={user[key]}
-                  style={{ width: "100%" }}
-                />
-              </Grid>
-            );
-          })}
-          <Grid item xs={12} sm={12}>
-            <TextField
-              id="outlined-multiline-static"
-              label="ABOUT ME"
-              multiline
-              rows={4}
-              defaultValue={user.aboutme}
-              variant="outlined"
-              style={{ width: "100%" }}
-            />
-          </Grid>
-        </Grid>
-        <Button variant="contained">Cancel</Button>
-        <Button variant="contained" color="primary">
-          Submit
-        </Button>
-      </form> */}
-
-      <Form onSubmit={onSubmit} user={user} />
+      <Form onSubmit={onSubmit} initialValues={user} />
     </div>
   );
 };
@@ -123,4 +60,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(EditProfile);
+export default connect(mapStateToProps, { userUpdate })(EditProfile);

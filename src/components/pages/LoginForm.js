@@ -41,7 +41,7 @@ class LoginForm extends React.Component {
           onSubmit={this.props.handleSubmit(this.props.onSubmit)}
         >
           <Grid container spacing={3} style={{ width: "80%", margin: "auto" }}>
-            <Grid item xs={6} sm={6}>
+            <Grid item xs={12} sm={12}>
               <Field
                 name="email"
                 label="EMAIL"
@@ -49,7 +49,7 @@ class LoginForm extends React.Component {
                 normalize={this.lower}
               />
             </Grid>
-            <Grid item xs={6} sm={6}>
+            <Grid item xs={12} sm={12}>
               <Field
                 name="password"
                 type="password"

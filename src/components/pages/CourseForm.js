@@ -108,7 +108,7 @@ class Form extends React.Component {
               <Button variant="contained">
                 <Link
                   to="/home"
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none", color: "black" }}
                 >
                   Cancel
                 </Link>

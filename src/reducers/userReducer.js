@@ -14,16 +14,12 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         isSignedIn: true,
         token: action.payload.token,
         status: action.payload.user.type.toLowerCase(),
+        // user:
       };
     case "USER_PROFILE":
       return {
         ...state,
         user: action.payload,
-      };
-    case "FETCH_ALL_COURSES":
-      return {
-        ...state,
-        allCourses: action.payload,
       };
     default:
       return state;
