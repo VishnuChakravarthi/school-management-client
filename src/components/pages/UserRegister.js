@@ -11,7 +11,7 @@ const UserRegister = ({ userRegister }) => {
   };
   return (
     <div>
-      <h2 style={{ textAlign: "center" }}>USER REGISTRATION</h2>
+      <h2 style={{ textAlign: "center", margin: "20px" }}>USER REGISTRATION</h2>
       <Form onSubmit={onSubmit} register={true} />
     </div>
   );

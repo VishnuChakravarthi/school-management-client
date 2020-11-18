@@ -11,7 +11,7 @@ body {
 .reg_form {
   display: flex;
   flex-direction: column;
-  /* margin: 30px 120px; */
+  margin: auto;
   background: white;
   width: 90%;
 }
