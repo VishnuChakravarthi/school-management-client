@@ -18,7 +18,7 @@ const UserHome = ({ status }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   return {
     status: state.user.status,
   };

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import "./index.css";
 
 import App from "./components/App";
 import reducer from "./reducers";
@@ -12,7 +13,7 @@ const savetoLocalStorage = (state) => {
     const serializedState = JSON.stringify(state);
     localStorage.setItem("state", serializedState);
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
 };
 

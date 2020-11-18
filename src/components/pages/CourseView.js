@@ -32,6 +32,13 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  courseTitle: {
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  inner: {
+    padding: "20px 50px",
+  },
 });
 
 const CourseView = ({
@@ -40,21 +47,22 @@ const CourseView = ({
   regCourse,
   match,
   course,
+  type,
 }) => {
   const classes = useStyles();
 
-  console.log(course);
+  // console.log(course);
   useEffect(() => {
     getCourse(match.params.id);
   }, []);
 
-  console.log(regCourse);
+  // console.log(regCourse);
 
-  const isReg = regCourse.find((course) => {
+  const isReg = regCourse?.find((course) => {
     return match.params.id === course.course._id;
   });
 
-  console.log(isReg);
+  // console.log(isReg);
 
   if (!course) {
     return <div>Loading !</div>;
@@ -63,91 +71,97 @@ const CourseView = ({
   return (
     <div className={classes.root}>
       <Card className={classes.card} variant="outlined">
-        <CardContent>
-          <Typography variant="h3" component="h1">
+        <CardContent className={classes.inner}>
+          <Typography
+            variant="h3"
+            component="h1"
+            className={classes.courseTitle}
+          >
             {course.name}
           </Typography>
           <Grid container spacing={3}>
             <Grid item xs={6}>
               <Typography variant="h6" component="h2">
-                ID :
+                ID
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" component="h2">
-                {course.id}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
-              <Typography variant="h6" component="h2">
-                Department :
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h6" component="h2">
-                {course.department}
+                : {course.id}
               </Typography>
             </Grid>
           </Grid>
           <Grid container spacing={3}>
             <Grid item xs={6}>
               <Typography variant="h6" component="h2">
-                Room :
+                Department
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" component="h2">
-                {course.room}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
-              <Typography variant="h6" component="h2">
-                Team :
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h6" component="h2">
-                {course.team}
+                : {course.department}
               </Typography>
             </Grid>
           </Grid>
           <Grid container spacing={3}>
             <Grid item xs={6}>
               <Typography variant="h6" component="h2">
-                Waitlist Capacity :
+                Room
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" component="h2">
-                {course.waitlistcapacity}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
-              <Typography variant="h6" component="h2">
-                Course Coordinator :
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h6" component="h2">
-                {course.creator.name}
+                : {course.room}
               </Typography>
             </Grid>
           </Grid>
           <Grid container spacing={3}>
             <Grid item xs={6}>
               <Typography variant="h6" component="h2">
-                Description :
+                Team
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" component="h2">
-                {course.description}
+                : {course.team}
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Typography variant="h6" component="h2">
+                Waitlist Capacity
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="h6" component="h2">
+                : {course.waitlistcapacity}
+              </Typography>
+            </Grid>
+          </Grid>
+          {type === "student" ? (
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <Typography variant="h6" component="h2">
+                  Course Coordinator
+                </Typography>
+              </Grid>
+              <Grid item xs={6}>
+                <Typography variant="h6" component="h2">
+                  : {course.creator.name}
+                </Typography>
+              </Grid>
+            </Grid>
+          ) : null}
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Typography variant="h6" component="h2">
+                Description
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="h6" component="h2">
+                : {course.description}
               </Typography>
             </Grid>
           </Grid>
@@ -158,7 +172,7 @@ const CourseView = ({
               Back
             </Link>
           </Button>
-          {!isReg ? (
+          {!isReg && type === "student" ? (
             <Button
               size="large"
               variant="contained"
@@ -175,8 +189,12 @@ const CourseView = ({
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
-  return { course: state.faculty.course, regCourse: state.student.courses };
+  // console.log(state);
+  return {
+    course: state.faculty.course,
+    regCourse: state.student.courses,
+    type: state.user.status,
+  };
 };
 
 export default connect(mapStateToProps, { getCourse, registerCourse })(

@@ -44,11 +44,28 @@ class Form extends React.Component {
     );
   };
 
+  renderTextfield = ({ label, input }) => {
+    return (
+      <div>
+        <TextField
+          label={label}
+          {...input}
+          multiline
+          rows={4}
+          // defaultValue=""
+          variant="outlined"
+          autoComplete="off"
+          style={{ width: "100%" }}
+        />
+      </div>
+    );
+  };
+
   handleChange = (event) => {
     // this.setState({ status: event.target.value });
   };
 
-  renderSelect = ({}) => {
+  renderSelect = () => {
     return (
       <div>
         <InputLabel id="demo-simple-select-label">Age</InputLabel>
@@ -70,65 +87,60 @@ class Form extends React.Component {
 
   render() {
     return (
-      <div>
-        <form
-          className="ui form error"
-          onSubmit={this.props.handleSubmit(this.props.onSubmit)}
-        >
-          <Grid container spacing={3} style={{ width: "80%", margin: "auto" }}>
-            {this.valueset.map((key) => {
-              return (
-                <Grid key={key} item xs={6} sm={6}>
-                  <Field
-                    name={key}
-                    label={key.toUpperCase()}
-                    component={this.renderInput}
-                  />
-                </Grid>
-              );
-            })}
-            <Grid item xs={12} sm={12}>
-              <TextField
-                label="DESCRIPTION"
-                multiline
-                rows={4}
-                defaultValue=""
-                variant="outlined"
-                style={{ width: "100%" }}
-              />
-            </Grid>
+      <form
+        className="ui form error"
+        onSubmit={this.props.handleSubmit(this.props.onSubmit)}
+      >
+        <Grid container spacing={3} style={{ width: "80%", margin: "auto" }}>
+          {this.valueset.map((key) => {
+            return (
+              <Grid key={key} item xs={6} sm={6}>
+                <Field
+                  name={key}
+                  label={key.toUpperCase()}
+                  component={this.renderInput}
+                />
+              </Grid>
+            );
+          })}
+          <Grid item xs={12} sm={12}>
+            <Field
+              name="description"
+              label="DESCRIPTION"
+              component={this.renderTextfield}
+            />
           </Grid>
+        </Grid>
 
-          <Grid container spacing={3} style={{ width: "80%", margin: "auto" }}>
-            <Grid item xs={6} sm={6} style={{ textAlign: "right" }}>
-              <Button variant="contained">
-                <Link
-                  to="/home"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  Cancel
-                </Link>
-              </Button>
-            </Grid>
-            <Grid item xs={6} sm={6}>
-              <Button
-                onClick={this.props.handleSubmit(this.props.onSubmit)}
-                variant="contained"
-                color="primary"
+        <Grid container spacing={3} style={{ width: "80%", margin: "auto" }}>
+          <Grid item xs={6} sm={6} style={{ textAlign: "right" }}>
+            <Button variant="contained">
+              <Link
+                to="/home"
+                style={{ textDecoration: "none", color: "black" }}
               >
-                Submit
-              </Button>
-            </Grid>
+                Cancel
+              </Link>
+            </Button>
           </Grid>
-        </form>
-      </div>
+          <Grid item xs={6} sm={6}>
+            <Button
+              onClick={this.props.handleSubmit(this.props.onSubmit)}
+              variant="contained"
+              color="primary"
+            >
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
     );
   }
 }
 
 const validate = (formValues) => {
   const error = {};
-  console.log("error", formValues);
+  // console.log("error", formValues);
   if (!formValues.id) {
     error.id = "Please enter an Id";
   }
@@ -150,7 +162,7 @@ const validate = (formValues) => {
   }
 
   if (!formValues.waitlistcapacity) {
-    error.waitlistcapacity = "Please enter either Staff or Student";
+    error.waitlistcapacity = "Please enter waitlist capacity";
   }
   return error;
 };

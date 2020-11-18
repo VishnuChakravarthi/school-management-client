@@ -14,17 +14,18 @@ export const userRegister = () => async (dispatch, getState) => {
 };
 
 export const userLogin = (email, password) => async (dispatch) => {
-  console.log(email);
+  // console.log(email);
   const response = await axios.post(`${baseURL}/users/login`, {
     email,
     password,
   });
-  console.log(response.data);
+  // console.log(response.data);
   dispatch({ type: "USER_LOGIN", payload: response.data });
   history.push("/home");
 };
 
 export const userLogout = () => async (dispatch, getState) => {
+  // console.log("logout");
   const token = getState().user.token;
   await axios.post(
     `${baseURL}/users/logout`,
@@ -36,6 +37,7 @@ export const userLogout = () => async (dispatch, getState) => {
     }
   );
   dispatch({ type: "USER_LOGOUT" });
+  // console.log("log end");
   history.push("/");
 };
 
@@ -50,14 +52,14 @@ export const userUpdate = (data) => async (dispatch, getState) => {
       },
     }
   );
-  console.log(response.data);
+  // console.log(response.data);
   dispatch({ type: "USER_UPDATE", payload: response.data });
   history.push("/profile");
 };
 
 export const fetchCourses = () => async (dispatch, getState) => {
   const token = getState().user.token;
-  console.log(token);
+  // console.log(token);
   const response = await axios.get(`${baseURL}/courses`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -74,7 +76,7 @@ export const fetchRegCourses = () => async (dispatch, getState) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(response.data);
+  // console.log(response.data);
   dispatch({ type: "FETCH_STU_COURSES", payload: response.data });
 };
 
@@ -91,7 +93,7 @@ export const fetchProfile = () => async (dispatch, getState) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(response.data);
+  // console.log(response.data);
   dispatch({ type: "USER_PROFILE", payload: response.data });
 };
 
@@ -107,25 +109,25 @@ export const createCourse = () => async (dispatch, getState) => {
       },
     }
   );
-  console.log(response.data);
+  // console.log(response.data);
   dispatch({ type: "USER_PROFILE", payload: response.data });
   history.push("/home");
 };
 
 export const getCourse = (id) => async (dispatch, getState) => {
   const token = getState().user.token;
-  console.log(id);
+  // console.log(id);
   const response = await axios.get(`${baseURL}/courses/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(response.data);
+  // console.log(response.data);
   dispatch({ type: "GET_COURSE", payload: response.data });
 };
 
 export const registerCourse = (id) => async (dispatch, getState) => {
-  console.log(id);
+  // console.log(id);
   const token = getState().user.token;
   const response = await axios.post(
     `${baseURL}/users/courses/${id}`,
@@ -136,7 +138,7 @@ export const registerCourse = (id) => async (dispatch, getState) => {
       },
     }
   );
-  console.log(response.data);
+  // console.log(response.data);
   dispatch({ type: "REG_COURSE", payload: response.data });
   history.push("/allcourses");
 };

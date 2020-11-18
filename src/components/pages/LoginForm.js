@@ -61,7 +61,8 @@ class LoginForm extends React.Component {
           <Grid container spacing={3} style={{ width: "80%", margin: "auto" }}>
             <Grid item xs={12} sm={12}>
               <Button
-                onClick={this.props.handleSubmit(this.props.onSubmit)}
+                // onClick={this.props.handleSubmit(this.props.onSubmit)}
+                type="submit"
                 variant="contained"
                 color="primary"
               >
@@ -78,12 +79,12 @@ class LoginForm extends React.Component {
 const validate = (formValues) => {
   const error = {};
 
-  if (!formValues.name) {
-    error.title = "Please enter a name";
+  if (!formValues.email) {
+    error.email = "Please enter an email";
   }
 
-  if (!formValues.email) {
-    error.description = "Please enter a email";
+  if (!formValues.password) {
+    error.password = "Please enter a password";
   }
 
   return error;

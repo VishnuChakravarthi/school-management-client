@@ -9,7 +9,7 @@ import Courses from "./Courses";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    width: "99%",
+    width: "98%",
   },
   paper: {
     padding: theme.spacing(2),
@@ -19,6 +19,11 @@ const useStyles = makeStyles((theme) => ({
   course: {
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
+  },
+  button: {
+    margin: "20px 0px",
+    width: "20%",
   },
 }));
 
@@ -27,6 +32,7 @@ const Student = ({ fetchRegCourses, courses }) => {
 
   useEffect(() => {
     fetchRegCourses();
+    window.scrollTo(0, 0);
   }, []);
 
   if (!courses) {
@@ -37,14 +43,14 @@ const Student = ({ fetchRegCourses, courses }) => {
       <div>
         You haven't registered to any course <br />
         <br />
-        <Button size="large" variant="contained" color="primary">
-          <Link
-            to="/allcourses"
-            style={{ textDecoration: "none", color: "white", width: "100%" }}
-          >
+        <Link
+          to="/allcourses"
+          style={{ textDecoration: "none", color: "white" }}
+        >
+          <Button size="large" variant="contained" color="primary">
             Register a Course
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </div>
     );
   }
@@ -56,15 +62,22 @@ const Student = ({ fetchRegCourses, courses }) => {
   const renderPage = () => {
     return (
       <div className={classes.root}>
-        <Courses courses={regCourses} />
+        <Courses courses={regCourses} type="student" />
       </div>
     );
   };
   return (
     <div className={classes.course}>
-      <h2>REGISTERED COURSES</h2>
+      <h2 style={{ textAlign: "center", margin: "20px" }}>
+        REGISTERED COURSES
+      </h2>
       {renderPage()}
-      <Button size="large" variant="contained" color="primary">
+      <Button
+        className={classes.button}
+        size="large"
+        variant="contained"
+        color="primary"
+      >
         <Link
           to="/allcourses"
           style={{ textDecoration: "none", color: "white", width: "100%" }}
@@ -77,7 +90,7 @@ const Student = ({ fetchRegCourses, courses }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   return { courses: state.courses.regCourses };
 };
 

@@ -9,11 +9,6 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 class Form extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { status: props.user.userType };
-  // }
-
   lower = (value) => value && value.toLowerCase();
 
   renderError = ({ touched, error }) => {
@@ -53,8 +48,9 @@ class Form extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="reg_form">
         <form
+          style={{ padding: "40px" }}
           className="ui form error"
           onSubmit={this.props.handleSubmit(this.props.onSubmit)}
         >
@@ -111,23 +107,16 @@ class Form extends React.Component {
           <Grid container spacing={3} style={{ width: "80%", margin: "auto" }}>
             <Grid item xs={6} sm={6} style={{ textAlign: "right" }}>
               {this.props.register ? (
-                <Button variant="contained">
-                  <Link
-                    to="/"
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    Cancel
-                  </Link>
-                </Button>
+                <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+                  <Button variant="contained">Cancel</Button>
+                </Link>
               ) : (
-                <Button variant="contained">
-                  <Link
-                    to="/profile"
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    Cancel
-                  </Link>
-                </Button>
+                <Link
+                  to="/profile"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <Button variant="contained">Cancel</Button>
+                </Link>
               )}
             </Grid>
             <Grid item xs={6} sm={6}>
@@ -172,7 +161,7 @@ const validate = (formValues) => {
     error.confirmPassword = "Password do not match";
   }
 
-  console.log(formValues.type);
+  // console.log(formValues.type);
 
   if (!formValues.type) {
     error.type = "Please enter either staff or student";

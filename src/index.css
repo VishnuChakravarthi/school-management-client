@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  font-family: ROBOTO;
+}
+
+body {
+  background-color: bisque;
+  margin-top: 90px;
+}
+
+.reg_form {
+  display: flex;
+  flex-direction: column;
+  /* margin: 30px 120px; */
+  background: white;
+  width: 90%;
+}

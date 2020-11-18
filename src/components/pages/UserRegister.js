@@ -6,12 +6,12 @@ import Form from "./Form";
 
 const UserRegister = ({ userRegister }) => {
   const onSubmit = (formValues) => {
-    console.log(formValues);
+    // console.log(formValues);
     userRegister();
   };
   return (
     <div>
-      <h2>USER REGISTRATION</h2>
+      <h2 style={{ textAlign: "center" }}>USER REGISTRATION</h2>
       <Form onSubmit={onSubmit} register={true} />
     </div>
   );

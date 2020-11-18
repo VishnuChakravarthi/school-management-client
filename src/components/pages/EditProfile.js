@@ -30,6 +30,7 @@ const EditProfile = ({ user, userUpdate }) => {
 
   return (
     <div className={classes.root}>
+      <h2 style={{ textAlign: "center", margin: "20px" }}>EDIT DETAILS</h2>
       <Form onSubmit={onSubmit} initialValues={user} />
     </div>
   );

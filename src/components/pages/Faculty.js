@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     width: "98%",
+    margin: "auto",
   },
   paper: {
     padding: theme.spacing(2),
@@ -28,12 +29,16 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "white",
   },
+  createBtn: {
+    textAlign: "center",
+    margin: 20,
+  },
 }));
 
 const Faculty = (props) => {
   const classes = useStyles();
 
-  console.log(props);
+  // console.log(props);
 
   useEffect(() => {
     props.fetchCourses();
@@ -45,11 +50,10 @@ const Faculty = (props) => {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
+      <h2 style={{ textAlign: "center", margin: "20px" }}>YOUR COURSES</h2>
+      <Grid container>
         <Courses courses={props.faculty.courses} type={"faculty"} />
-      </Grid>
-      <Grid container spacing={3}>
-        <Grid item xs={3}>
+        <Grid item xs={12} className={classes.createBtn}>
           <Button variant="contained" color="primary">
             <Link className={classes.link} to="/faculty/createcourse">
               Create Course
@@ -62,7 +66,7 @@ const Faculty = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   return state;
 };
 
